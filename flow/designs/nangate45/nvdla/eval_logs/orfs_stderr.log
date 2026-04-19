@@ -1,0 +1,48 @@
++ DEFAULT_IMAGE=openroad/orfs:latest
++ FLOW_DIR=/OpenROAD-flow-scripts/flow
++ USE_USER=false
++ DRY_RUN=false
++ PORTS=()
++ IMAGE=
++ CMD_ARGS=()
++ [[ 6 -gt 0 ]]
++ case "$1" in
++ CMD_ARGS=("$@")
++ break
++ IMAGE=openroad/orfs:latest
++ get_container_engine
+++ docker --version
++ local 'DOCKER_VERSION_STRING=Docker version 28.1.1, build 4eba377327'
++ [[ Docker version 28.1.1, build 4eba377327 == *\D\o\c\k\e\r* ]]
++ container_engine=docker
+++ pwd
++ WORKSPACE='/Users/dkall/Desktop/Code/HRT Challenge/OpenROAD-flow-scripts/flow'
++ YOSYS_EXE=/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys
++ OPENROAD_EXE=/OpenROAD-flow-scripts/tools/install/OpenROAD/bin/openroad
++ KLAYOUT_CMD=/usr/bin/klayout
++ XSOCK=/tmp/.X11-unix
++ XAUTH=/tmp/.docker.xauth
++ false
++ xauth nlist :0
++ sed -e 's/^..../ffff/'
++ xauth -f /tmp/.docker.xauth nmerge -
+xauth:  file /Users/dkall/.Xauthority does not exist
+xauth:  file /tmp/.docker.xauth does not exist
+xauth: (argv):1:  unable to read any entries from file "(stdin)"
++ test -t 0
++ DOCKER_INTERACTIVE=-ti
++ false
++ [[ docker == \p\o\d\m\a\n ]]
+++ id -u dkall
+++ id -g dkall
++ user_args='-u 501:20'
++ user_env=
++ PORT_ARGS=()
++ CMD_STR=
++ [[ 6 -gt 0 ]]
++ CMD_STR='cd /work && make DESIGN_CONFIG=./designs/nangate45/nvdla/config.mk finish'
++ ENV_SH_CMD='if [ -f ../env.sh ]; then . ../env.sh; fi;'
++ DOCKER_CMD=("$container_engine" run --rm -i $DOCKER_INTERACTIVE $user_env $user_args -e LIBGL_ALWAYS_SOFTWARE=1 -e QT_X11_NO_MITSHM=1 -e XDG_RUNTIME_DIR=/tmp/xdg-run -e "DISPLAY=${DISPLAY:-:0}" -e QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb -v "$XSOCK:$XSOCK" -v "$XAUTH:$XAUTH" -e "XAUTHORITY=$XAUTH" -e FLOW_HOME=/OpenROAD-flow-scripts/flow/ -e WORK_HOME=/work -e "YOSYS_EXE=$YOSYS_EXE" -e "OPENROAD_EXE=$OPENROAD_EXE" -e "KLAYOUT_CMD=$KLAYOUT_CMD" -v "$WORKSPACE:/work:Z" --network host "${PORT_ARGS[@]}" "$IMAGE" bash -c "set -ex; mkdir /tmp/xdg-run; cd ${FLOW_DIR}; ${ENV_SH_CMD}$CMD_STR")
++ false
++ exec docker run --rm -i -ti -u 501:20 -e LIBGL_ALWAYS_SOFTWARE=1 -e QT_X11_NO_MITSHM=1 -e XDG_RUNTIME_DIR=/tmp/xdg-run -e DISPLAY=:0 -e QT_XKB_CONFIG_ROOT=/usr/share/X11/xkb -v /tmp/.X11-unix:/tmp/.X11-unix -v /tmp/.docker.xauth:/tmp/.docker.xauth -e XAUTHORITY=/tmp/.docker.xauth -e FLOW_HOME=/OpenROAD-flow-scripts/flow/ -e WORK_HOME=/work -e YOSYS_EXE=/OpenROAD-flow-scripts/tools/install/yosys/bin/yosys -e OPENROAD_EXE=/OpenROAD-flow-scripts/tools/install/OpenROAD/bin/openroad -e KLAYOUT_CMD=/usr/bin/klayout -v '/Users/dkall/Desktop/Code/HRT Challenge/OpenROAD-flow-scripts/flow:/work:Z' --network host openroad/orfs:latest bash -c 'set -ex; mkdir /tmp/xdg-run; cd /OpenROAD-flow-scripts/flow; if [ -f ../env.sh ]; then . ../env.sh; fi;cd /work && make DESIGN_CONFIG=./designs/nangate45/nvdla/config.mk finish'
+time="2026-04-18T20:19:44+02:00" level=error msg="error waiting for container: unexpected EOF"

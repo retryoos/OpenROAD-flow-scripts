@@ -66,7 +66,11 @@ if { [find_macros] != "" } {
     set all_args $::env(RTLMP_ARGS)
   }
 
-  log_cmd rtl_macro_placer {*}$all_args
+  if { [env_var_exists_and_non_empty SKIP_RTLMP] } {
+    puts "Skipping rtl_macro_placer (SKIP_RTLMP set)"
+  } else {
+    log_cmd rtl_macro_placer {*}$all_args
+  }
 } else {
   puts "No macros found: Skipping macro_placement"
 }
